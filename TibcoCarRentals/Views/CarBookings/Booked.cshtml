@@ -1,0 +1,89 @@
+﻿@model TibcoCarRentals.Models.CarBooking
+
+@{
+    ViewData["Title"] = "Booked";
+}
+<section class="model-area section-gap" id="cars">
+    <div class="container">
+        <div class="row d-flex justify-content-center pb-40">
+            <div class="col-md-12 pb-40 header-text">
+                <h1 class="text-center pb-10">Confirm your booking</h1>
+                <p class="text-center">
+                    Pick up your car anytime between 9am to 5pm at <b>133 Tay Street, Invercargill, New Zealand</b>
+                </p>
+            </div>
+        </div>
+        <div class="active-model-carusel">
+            <div class="row align-items-center single-model item">
+                <div class="col-lg-6 model-left">
+                    <div class="title justify-content-between d-flex">
+                        <h2>$@ViewData["CarDailyPrice"]<span>/Total</span></h2>
+                    </div>
+                    <p>
+                        Year: @Html.DisplayFor(model => model.Car.Year)
+                        <br>
+                        Number of Seats: @Html.DisplayFor(model => model.Car.NumSeats)
+                        <br>
+                        Days Taken: @ViewData["DaysTaken"]
+                        <br>
+                        @Html.DisplayNameFor(model => model.FinishDate): @Html.DisplayFor(model => model.FinishDate)
+                        <br>
+                        @Html.DisplayNameFor(model => model.StartDate): @Html.DisplayFor(model => model.StartDate)
+                    </p>
+                    <h3>
+                       Are you sure you want to book this car?
+                    </h3>
+                    <a onClick="ConfirmBooking();" class="btn btn-default btn-lg btn-block text-center text-uppercase primary-btn" asp-controller="CarBookings" asp-action="ConfirmBooking" asp-route-id="@Model.BookingID">Confirm Booking</a>
+
+                    @*<button asp-controller="CarBooking" asp-action="Edit" asp-route-id="@Model.BookingID" class="btn btn-default btn-lg btn-block text-center text-uppercase primary-btn">Edit Booking</button>*@
+                </div>
+                <div class="col-lg-6 model-right">
+                    <img src="@Html.DisplayFor(model => model.Car.ImageLocation)" class="singleImage img-fluid" />
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+@*<div>
+        <h2>You have just booked a car from Tibco Car Rentals!</h2>
+        <h4>CarBooking</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.StartDate)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.StartDate)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.FinishDate)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.FinishDate)
+            </dd>
+            <dt>
+                Days Taken
+            </dt>
+            <dd>
+                @ViewData["DaysTaken"]
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Car)
+            </dt>
+            <dd>
+                <img src="@Html.DisplayFor(model => model.Car.ImageLocation)" class="carImage" />
+            </dd>
+        </dl>
+    </div>
+    <div>
+        <button asp-action="Edit" asp-route-id="@Model.BookingID" value="Edit Booking" class="btn btn-default btn-lg text-center text-uppercase primary-btn">Edit Booking</button>
+        <button asp-action="Index" asp-route-id="@Model.BookingID" value="Go to all bookings" class="btn btn-default btn-lg text-center text-uppercase primary-btn">Go to all bookings</button>
+
+        @*<a asp-action="Edit" asp-route-id="@Model.BookingID">Edit Booking</a> |
+            <a asp-action="Index">Go to all bookings</a>
+    </div>*@

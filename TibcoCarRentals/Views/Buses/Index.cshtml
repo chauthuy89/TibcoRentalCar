@@ -1,0 +1,89 @@
+﻿@model TibcoCarRentals.Models.BusViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<!-- start banner Area -->
+<section class="banner-area relative" id="home">
+    <div class="overlay overlay-bg"></div>
+    <div class="container">
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="about-content col-lg-12">
+                <h1 class="text-white">
+                    Buses
+                </h1>
+            </div>
+        </div>
+    </div>
+</section>
+@if (User.IsInRole("Admin"))
+{
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+}
+<row>
+    <div class="col-lg-4">
+        <form asp-controller="Buses" asp-action="Index" method="get" class="form" role="form" autocomplete="off">
+            <div class="row">
+                <h2 class="text-center">Filter Buses</h2>
+                <div class="default-select" id="default-select">
+                    <select class="form-control filter txt-field" asp-for="BusModel" asp-items="Model.Models">
+                        <option value="">All</option>
+                    </select>
+                </div>
+
+                <input class="form-control filter" type="text" asp-for="SearchYear" placeholder="Year">
+
+                <input class="form-control filter" type="text" asp-for="SearchPrice" placeholder="Daily Price">
+
+                <input class="form-control filter" type="text" asp-for="SearchSeats" placeholder="Number of Seats">
+
+            </div>
+            <br />
+            <div class="col-md-12">
+                <button type="submit" value="Search" class="btn btn-default btn-lg btn-block text-center text-uppercase primary-btn">Search for Bus</button>
+            </div>
+        </form>
+        <form asp-controller="Buses" asp-action="Index">
+            <div class="col-md-12">
+                <input class="btn btn-default btn-lg btn-block text-center text-uppercase primary-btn more-space" type="submit" value="Reset" />
+            </div>
+        </form>
+    </div>
+    <div class="col-lg-8">
+        <div class="row align-items-center single-model item">
+            @foreach (var item in Model.Buses)
+            {
+                <div class="col-md-12">
+                    <img src="@Html.DisplayFor(modelItem => item.ImageLocation)" class="singleImage" />
+                    <div class="title justify-content-between d-flex">
+                        <br />
+                        <h2>$@Html.DisplayFor(modelItem => item.DailyPrice)<span>/day</span></h2>
+                        <div>
+                            @Html.DisplayNameFor(model => model.Buses[0].Model):
+                            @Html.DisplayFor(modelItem => item.Model)
+                        </div>
+                        <div>
+                            @Html.DisplayNameFor(model => model.Buses[0].Year):
+                            @Html.DisplayFor(modelItem => item.Year)
+                        </div>
+                        <div>
+                            @Html.DisplayNameFor(model => model.Buses[0].NumSeats):
+                            @Html.DisplayFor(modelItem => item.NumSeats)
+                        </div>
+
+                    </div>
+                    <a asp-controller="BusBookings" asp-action="Create" asp-route-id="@item.BusID">
+                        <input type="button" value="Book this Bus Now" name="Book" class="btn btn-default btn-lg btn-block text-center text-uppercase primary-btn" />
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+</row>
+<div class="row">
+
+</div>
+

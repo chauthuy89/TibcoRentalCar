@@ -1,0 +1,114 @@
+﻿@*@using Microsoft.AspNetCore.Identity
+
+    @inject SignInManager<IdentityUser> SignInManager
+    @inject UserManager<IdentityUser> UserManager
+    @model TibcoCarRentals.Models.CarBooking
+
+    @{
+        ViewData["Title"] = "Create";
+    }
+
+    <h2>Create</h2>
+    <h4>CarBooking</h4>
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="StartDate" class="control-label"></label>
+                    <input asp-for="StartDate" class="form-control" />
+                    <span asp-validation-for="StartDate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="FinishDate" class="control-label"></label>
+                    <input asp-for="FinishDate" class="form-control" />
+                    <span asp-validation-for="FinishDate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input asp-for="UserID" value="@UserManager.GetUserId(User)" class="form-control" type="hidden" />
+                    <span asp-validation-for="UserID" class="text-danger"></span>
+
+                    <input asp-for="CarID" class="form-control" value="@ViewData["CarID"]" type="hidden" />
+                    @*<select asp-for="CarID" class ="form-control" asp-items="ViewBag.CarID"></select>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <hr />
+
+
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>*@
+
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@model TibcoCarRentals.Models.CarBooking
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<section class="model-area section-gap" id="cars">
+    <div class="container">
+        <div class="row d-flex justify-content-center pb-40">
+            <div class="col-md-12 pb-40 header-text">
+                <h1 class="text-center pb-10">Choose your booking dates</h1>
+                <p class="text-center">
+                    Payment will be done in store when your pick up your vehicle at <b>133 Tay Street, Invercargill, New Zealand</b>
+                </p>
+            </div>
+        </div>
+        <div class="active-model-carusel">
+            <div class="row align-items-center single-model item">
+                <div class="col-lg-6 model-left">
+                    <div class="title justify-content-between d-flex">
+                        <h2>$@ViewData["CarDailyPrice"]<span>/day</span></h2>
+                    </div>
+                    <p>
+                        Model: @ViewData["CarModel"]
+                        <br>
+                        Year: @ViewData["CarYear"]
+                        <br>
+                        Number of Seats: @ViewData["CarNumSeats"]
+                    </p>
+                    <form asp-action="Create">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="StartDate" class="control-label"></label>
+                            <input asp-for="StartDate" class="form-control" />
+                            <span asp-validation-for="StartDate" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="FinishDate" class="control-label"></label>
+                            <input asp-for="FinishDate" class="form-control" />
+                            <span asp-validation-for="FinishDate" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="UserID" value="@UserManager.GetUserId(User)" class="form-control" type="hidden" />
+                            <span asp-validation-for="UserID" class="text-danger"></span>
+
+                            <input asp-for="CarID" class="form-control" value="@ViewData["CarID"]" type="hidden" />
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Book This Car Now" name="Browse" class="btn btn-default btn-lg btn-block text-center text-uppercase primary-btn" />
+                        </div>
+                    </form>
+                </div>
+                <div class="col-lg-6 model-right">
+                    <img src="@ViewData["CarImage"]" class="singleImage img-fluid" />
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+

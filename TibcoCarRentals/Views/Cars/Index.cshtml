@@ -1,0 +1,176 @@
+﻿@model TibcoCarRentals.Models.CarModelViewModel
+
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<!-- start banner Area -->
+<section class="banner-area relative" id="home">
+    <div class="overlay overlay-bg"></div>
+    <div class="container">
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="about-content col-lg-12">
+                <h1 class="text-white">
+                    Cars
+                </h1>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Start banner Area -->
+@if (User.IsInRole("Admin"))
+{
+    <p>
+        <a class="btn btn-default btn-lg  text-center text-uppercase" asp-action="Create">Create New</a>
+    </p>
+}
+
+<form asp-controller="Cars" asp-action="Index" method="get" class="form" role="form" autocomplete="off">
+    <div class="row justify-content-start">
+        <h2 class="text-center">Filter Cars</h2>
+        <div class="from-group col-md-3">
+            <div class="default-select" id="default-select">
+                <select class="form-control filter txt-field" asp-for="CarModel" asp-items="Model.Models">
+                    <option value="">All</option>
+                </select>
+            </div>
+        </div>
+        <div class="from-group col-md-3">
+            <input class="form-control filter" type="text" asp-for="SearchYear" placeholder="Year">
+        </div>
+        @*</div>
+            <div class="row">*@
+        <div class="from-group col-md-3">
+            <input class="form-control filter" type="text" asp-for="SearchPrice" placeholder="Daily Price">
+        </div>
+        <div class="col-md-3">
+            <input class="form-control filter" type="text" asp-for="SearchSeats" placeholder="Number of Seats">
+        </div>
+
+    </div>
+    <br />
+    
+        <div class="col-md-6">
+            <button type="submit" value="Search" class="btn btn-default btn-lg btn-block text-center text-uppercase primary-btn">Search for Car</button>
+        </div>
+        
+    
+</form>
+<form asp-controller="Cars" asp-action="Index">
+    <div class="col-md-6">
+        <input class="btn btn-default btn-lg btn-block text-center text-uppercase primary-btn more-space" type="submit" value="Reset" />
+    </div>
+</form>
+<!-- End banner Area -->
+<div class="row  align-items-center single-model item">
+    @foreach (var item in Model.Cars)
+    {
+        <div class="col-md-6">
+            <img src="@Html.DisplayFor(modelItem => item.ImageLocation)" class="center carImage" />
+            <div>
+                <br />
+                <div class="center title justify-content-between d-flex">
+                    <h2>$@Html.DisplayFor(modelItem => item.DailyPrice)<span>/day</span></h2>
+                    <div>
+                        @Html.DisplayNameFor(model => model.Cars[0].Model):
+                        @Html.DisplayFor(modelItem => item.Model)
+                    </div>
+                    <div>
+                        @Html.DisplayNameFor(model => model.Cars[0].Year):
+                        @Html.DisplayFor(modelItem => item.Year)
+                    </div>
+                    <div>
+                        @Html.DisplayNameFor(model => model.Cars[0].NumSeats):
+                        @Html.DisplayFor(modelItem => item.NumSeats)
+                    </div>
+                </div>
+            </div>@if (User.IsInRole("Admin"))
+            {
+                <p class="center title justify-content-between d-flex">
+                    <a class="btn btn-default btn-lg  text-center text-uppercase primary-btn" asp-action="Edit" asp-route-id="@item.CarID">Edit</a>
+                    <a class="btn btn-default btn-lg  text-center text-uppercase primary-btn" asp-action="Delete" asp-route-id="@item.CarID">Delete</a>
+                </p>
+                <hr />
+            }
+            else
+            {
+                <a asp-controller="CarBookings" asp-action="Create" asp-route-id="@item.CarID">
+                    <input type="button" value="Book this Car Now" name="Book" class="btn btn-default btn-lg btn-block text-center text-uppercase primary-btn" />
+                </a>
+            }
+        </div>
+    }
+</div>
+
+<div class="row">
+
+</div>
+
+@*
+        !!! Just a list of all cars !!!
+
+        <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Model)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Year)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DailyPrice)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NumSeats)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Warrent)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Registration)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ImageLocation)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Model)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Year)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DailyPrice)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NumSeats)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Warrent)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Registration)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ImageLocation)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.CarID">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.CarID">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.CarID">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>*@

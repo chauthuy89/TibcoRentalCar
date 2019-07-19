@@ -1,0 +1,114 @@
+﻿@model IEnumerable<TibcoCarRentals.Models.CarBooking>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<!-- start banner Area -->
+<section class="banner-area relative" id="home">
+    <div class="overlay overlay-bg"></div>
+    <div class="container">
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="about-content col-lg-12">
+                <h1 class="text-white">
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <i>Manage</i>
+                    }
+                    Car Bookings
+                </h1>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End banner Area -->
+@if (User.IsInRole("Admin"))
+{
+    <p>
+        <a class="btn btn-default btn-lg  text-center text-uppercase" asp-action="Create">Create New</a>
+    </p>
+}
+<a class="text-uppercase primary-btn" asp-controller="BusBookings" asp-action="Index">Go to Bus Bookings</a>
+<a class="text-uppercase primary-btn right" asp-controller="Cars" asp-action="Index">Booking Another Car</a>
+<table class="table">
+    <thead>
+        <tr>
+            @if (!User.IsInRole("Admin"))
+            {
+                <th></th>
+            }
+            <th>
+                @Html.DisplayNameFor(model => model.StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FinishDate)
+            </th>
+            <th>
+                Days Taken
+            </th>
+            <th>
+                Price
+            </th>
+            @if (User.IsInRole("Admin"))
+            {
+                <th>
+                    @Html.DisplayNameFor(model => model.Car.Warrent)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Car.Registration)
+                </th>
+            }
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                @if (!User.IsInRole("Admin"))
+                {
+                    <td>
+                        <img src="@Html.DisplayFor(modelItem => item.Car.ImageLocation)" class="carImage bookingImage" />
+                    </td>
+                }
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FinishDate)
+                </td>
+                <td>
+                    @{
+                        DateTime date1 = item.StartDate;
+                        DateTime date2 = item.FinishDate;
+                        int days = ((TimeSpan)(date2 - date1)).Days + 1;
+                    }
+                    @days
+                </td>
+                <td>
+                    @{
+                        double price = @item.Car.DailyPrice * days;
+                    }
+                    @price
+                </td>
+                @if (User.IsInRole("Admin"))
+                {
+                <td>
+                    @Html.DisplayFor(modelItem => item.Car.Registration)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Car.Registration)
+                </td>
+                }
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.BookingID">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.BookingID">Details</a>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        @: | <a asp-action="Delete" asp-route-id="@item.BookingID">Delete</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,75 @@
+﻿@model TibcoCarRentals.Models.Contact
+
+@{
+    ViewData["Title"] = "Index";
+}
+<!-- start banner Area -->
+<section class="banner-area relative" id="home">
+    <div class="overlay overlay-bg"></div>
+    <div class="container">
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="about-content col-lg-12">
+                <h1 class="text-white">
+                    Contact
+                </h1>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Start banner Area -->
+<link href="~/css/contacts.css" rel="stylesheet" type="text/css" />
+<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
+<!-- start banner Area -->
+<section class="banner-area relative" id="home">
+    <div class="overlay overlay-bg"></div>
+
+</section>
+<!-- End banner Area -->
+<!-- Start contact-page Area -->
+<section class="contact-page-area section-gap">
+    <div class="container">
+        <div class="row contactRow">
+            <div class="col-lg-6 d-flex flex-column address-wrap">
+                <div class="single-contact-address d-flex flex-row">
+                    <div class="icon">
+                        <span class="lnr lnr-home"></span>
+                    </div>
+                    <div class="contact-details">
+                        <h5>Invercargill, New Zealand</h5>
+                        <p>68 Teviot</p>
+                    </div>
+                </div>
+                <div class="single-contact-address d-flex flex-row">
+                    <div class="icon">
+                        <span class="lnr lnr-phone-handset"></span>
+                    </div>
+                    <div class="contact-details">
+                        <h5>0204639999</h5>
+                        <p>Mon to Fri 9am to 6 pm</p>
+                    </div>
+                </div>
+                <div class="single-contact-address d-flex flex-row">
+                    <div class="icon">
+                        <span class="lnr lnr-envelope"></span>
+                    </div>
+                    <div class="contact-details">
+                        <h5>
+                            Support:   <a href="mailto:chauthuy89@gmail.com">chauthuy89@gmail.com</a><br />
+
+                        </h5>
+                        <p>Send us your query anytime!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <form class="form-group contact-form text-right" id="myForm" asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input asp-for="Name" name="name" placeholder="Enter your name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your name'" class="form-control" required="" type="text">
+                    <input asp-for="Email" name="email" placeholder="Enter email address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'" class="form-control" required="" type="email">
+                    <textarea asp-for="Message" class="common-textarea form-control" name="message" placeholder="Messege" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'" required="" style="height:120px"></textarea>
+                    <button class="primary-btn mt-20 text-white" style="float: left;">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

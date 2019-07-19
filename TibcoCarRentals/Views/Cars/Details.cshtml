@@ -1,0 +1,43 @@
+﻿@model TibcoCarRentals.Models.Car
+
+@{
+    ViewData["Title"] = "Details";
+}
+<section class="model-area section-gap" id="cars">
+    <div class="container">
+        <div class="row d-flex justify-content-center pb-40">
+            <div class="col-md-12 pb-40 header-text">
+                <h1 class="text-center pb-10">Choose your Desired Car Model</h1>
+                <p class="text-center">
+                    Who are in extremely love with eco friendly system.
+                </p>
+            </div>
+        </div>
+        <div class="active-model-carusel">
+            <div class="row align-items-center single-model item">
+                <div class="col-lg-6 model-left">
+                    <div class="title justify-content-between d-flex">
+                        <h4 class="mt-20">@Html.DisplayFor(model => model.Model)</h4>
+                        <h2>$@Html.DisplayFor(model => model.DailyPrice)<span>/day</span></h2>
+                    </div>
+                    <p>
+                        Quality cars just for you.
+                    </p>
+                    <p>
+                        @Html.DisplayNameFor(model => model.Year): @Html.DisplayFor(model => model.Year)
+                        <br>
+                        @Html.DisplayNameFor(model => model.NumSeats): @Html.DisplayFor(model => model.NumSeats)
+                    </p>
+                    <a asp-action="Create" asp-controller="CarBookings" asp-route-id="@Model.CarID">
+                        <input type="button" value="Book This Car Now" name="Browse" class="btn btn-default btn-lg btn-block text-center text-uppercase primary-btn" />
+                    </a>
+                </div>
+                <div class="col-lg-6 model-right">
+                    <img src="@Html.DisplayFor(model => model.ImageLocation)" class="carImage img-fluid" />
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<a asp-action="Edit" asp-route-id="@Model.CarID">Edit</a> |
+<a asp-action="Index">Back</a>

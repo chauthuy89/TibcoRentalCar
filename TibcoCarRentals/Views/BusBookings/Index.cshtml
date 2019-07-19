@@ -1,0 +1,85 @@
+﻿@model IEnumerable<TibcoCarRentals.Models.BusBooking>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<!-- start banner Area -->
+<section class="banner-area relative" id="home">
+    <div class="overlay overlay-bg"></div>
+    <div class="container">
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="about-content col-lg-12">
+                <h1 class="text-white">
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <i>Manage</i>
+                    }
+                    Bus Bookings
+                </h1>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End banner Area -->
+@if (User.IsInRole("Admin"))
+{
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+}
+<a class="text-uppercase primary-btn text-left" asp-controller="CarBookings" asp-action="Index">Go to my Car Bookings</a>
+<a class="text-uppercase primary-btn right" asp-controller="Buses" asp-action="Index">Booking Another Bus</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NumOfGuest)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateToBook)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SpecialRequirement)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Bus)
+            </th>
+            <th>
+                Price
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumOfGuest)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateToBook)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SpecialRequirement)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Bus.Model)
+                </td>
+                <td>
+                    $ ??
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.BusBookingID">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.BusBookingID">Details</a> 
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a asp-action="Delete" asp-route-id="@item.BusBookingID">Delete</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

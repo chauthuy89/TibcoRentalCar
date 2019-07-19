@@ -1,0 +1,48 @@
+﻿@model TibcoCarRentals.Models.BusBooking
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>BusBooking</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NumOfGuest)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NumOfGuest)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DateToBook)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DateToBook)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SpecialRequirement)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SpecialRequirement)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UserID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UserID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bus)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bus.BusID)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.BusBookingID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

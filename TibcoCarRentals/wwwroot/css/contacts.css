@@ -1,0 +1,26 @@
+﻿body {
+    background-color: white;
+}
+.footer {
+    clear: both;
+    position: relative;
+    height: 40px;
+    margin-top: 14%;
+}
+
+.contact-page-area {
+    position: relative;
+    height: auto;
+    min-height: 100% !important;
+}
+.section-gap {
+    padding: 40px 0;
+}
+.contactRow {
+    margin-right: 30px; 
+    margin-left: 0px; 
+}
+.contact-page-area .form-area .primary-btn:hover {
+    border: 1px solid #9f3a96;
+    color: #9f3a96 !important;
+}

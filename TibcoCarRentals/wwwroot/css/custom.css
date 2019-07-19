@@ -1,0 +1,115 @@
+﻿.single-model .title h2 span {
+    font-size: 14px;
+}
+.single-model .title h2 {
+    color: #9f3a96;
+}
+
+.single-model .primary-btn {
+    background-color: #9f3a96;
+}
+.footer-image {
+    width:60%;
+    height:auto;
+}
+.primary-btn:hover {
+    color: #9f3a96;
+    background-color: transparent;
+    border-color: #9f3a96;
+}
+
+.home-about-area .home-about-right .primary-btn {
+    background-color: #9f3a96;
+}
+
+    .home-about-area .home-about-right .primary-btn:hover {
+        color: #9f3a96;
+        border-color: #9f3a96;
+    }
+
+b, sup, sub, u, del {
+    color: #9f3a96;
+}
+
+.banner-area {
+    margin-bottom: 10px;
+}
+
+.filter {
+    display: unset;
+}
+
+.singleImage {
+    width: 100%;
+    align-items: center;
+    margin: 1px;
+    margin-top: 10px;
+}
+.more-space{
+    margin-top: 5px;
+}
+.carImage {
+    width: auto;
+    align-items: center;
+    margin: 1px;
+    margin-top: 10px;
+    height: 300px;
+}
+.bookingImage {
+    height:auto;
+    width:300px;
+}
+    .center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+body {
+    margin-top: 2%;
+    min-height: 100%;
+    position: relative;
+    padding: 10px;
+    padding-bottom: 60px; /* Height of the footer */
+}
+/* Style all font awesome icons */
+.fa {
+    font-size: 30px;
+    width: 30px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 50%;
+}
+
+h2 {
+    color: #9f3a96;
+}
+
+.home-about-area .home-about-right {
+    padding-right: 5%;
+    padding-left: 4%;
+}
+.right {
+    text-align: right;
+    float: right;
+}
+h3{
+    margin:5px;
+    padding:5px;
+}
+@media only screen and (max-width: 600px) {
+    .carImage {
+        width: 100%;
+        align-items: center;
+        margin: 1px;
+        margin-top: 10px;
+    }
+
+    .center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        height: auto;
+    }
+}

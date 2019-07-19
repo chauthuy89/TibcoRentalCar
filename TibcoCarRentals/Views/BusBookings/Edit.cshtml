@@ -1,0 +1,53 @@
+﻿@using Microsoft.AspNetCore.Identity
+
+@model TibcoCarRentals.Models.BusBooking
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>BusBooking</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="BusBookingID" />
+            <div class="form-group">
+                <label asp-for="NumOfGuest" class="control-label"></label>
+                <input asp-for="NumOfGuest" class="form-control" />
+                <span asp-validation-for="NumOfGuest" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateToBook" class="control-label"></label>
+                <input asp-for="DateToBook" class="form-control" />
+                <span asp-validation-for="DateToBook" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SpecialRequirement" class="control-label"></label>
+                <input asp-for="SpecialRequirement" class="form-control" />
+                <span asp-validation-for="SpecialRequirement" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input asp-for="UserID" value="@UserManager.GetUserId(User)" class="form-control" type="hidden" />
+                <span asp-validation-for="UserID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BusID" class="control-label"></label>
+                <select asp-for="BusID" class="form-control" asp-items="ViewBag.BusID"></select>
+                <span asp-validation-for="BusID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
